@@ -67,6 +67,10 @@ class Publisher():
     async def __aexit__(self, *_):
         await self._jeedom_session.close()
 
+    @property
+    def changes(self):
+        return self.__changes
+
     def create_send_task(self):
         """ Helper function to create the send task.
 
@@ -133,14 +137,18 @@ class Publisher():
     async def add_change(self, key: str, value):
         """
         Add a key/value pair to the payload of the next cycle, several levels can be provided at once by separating keys with `::`
-        If a key already exists the value will be replaced by the newest
+        If a key already exists the value will be replaced by the newest; None value will be ignored
         """
+        if value is None:
+            return
+
         if key.find('::') != -1:
 
             changes = value
             for k in reversed(key.split('::')):
-                tmp_changes = {}
-                tmp_changes[k] = changes
+                tmp_changes = {
+                    k: changes
+                }
                 changes = tmp_changes
             await self.__merge_dict(self.__changes,changes)
         else:

@@ -1,8 +1,7 @@
 # pylint: disable=missing-module-docstring
-
 from setuptools import setup, find_packages
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
@@ -24,7 +23,7 @@ setup(
     long_description_content_type="text/markdown",
     keywords = ['JEEDOM', 'DAEMON', 'ASYNCIO'],
     classifiers=[
-        'Development Status :: 4 - Beta',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
+        'Development Status :: 5 - Production/Stable',      # Chose either "3 - Alpha", "4 - Beta" or "5 - Production/Stable" as the current state of your package
 
         'Intended Audience :: Developers',      # Define that your audience are developers
         'Topic :: Software Development :: Build Tools',
